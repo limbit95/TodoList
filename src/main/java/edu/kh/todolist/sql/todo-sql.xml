@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<entry key="selectAll">
+		SELECT TODO_NO, TODO_TITLE, TODO_MEMO, 
+		TO_CHAR(TODO_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') "TODO_DATE"
+		FROM "TODO"
+		WHERE MEMBER_NO = ?
+		AND TODO_DEL_FL = 'N'
+		ORDER BY TODO_NO
+	</entry>
+	
+	<entry key="insert">
+		INSERT INTO "TODO" VALUES(
+		SEQ_TODO_NO.NEXTVAL, ?, ?, DEFAULT, DEFAULT, ?
+		)
+	</entry>
+	
+	<entry key="delete">
+		UPDATE TODO SET
+		TODO_DEL_FL = 'Y'
+		WHERE TODO_NO = ?
+	</entry>
+	
+	<entry key="selectOne">
+		SELECT TODO_NO, TODO_TITLE, TODO_MEMO, TODO_DATE
+		FROM "TODO"
+		WHERE MEMBER_NO = ? 
+		AND TODO_NO = ?
+		AND TODO_DEL_FL = 'N'
+	</entry>
+	
+	<entry key="update">
+		UPDATE "TODO" SET
+		TODO_TITLE = ?,
+		TODO_MEMO = ?
+		WHERE TODO_NO = ?
+		AND MEMBER_NO = ?
+	</entry>
+	
+</properties>
